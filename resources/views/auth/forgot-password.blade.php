@@ -12,21 +12,9 @@
     <div class="bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2">
         
         <!-- Bagian Kiri -->
-        <div class="relative bg-cover bg-center min-h-[300px] md:min-h-[550px] p-8 flex flex-col justify-between text-white" 
-             style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('{{ asset('images/bg-kemahin.jpg') }}');">
-            <div>
-                <div class="flex items-center gap-2 text-2xl font-bold">
-                    <i class="fa-solid fa-mountain-sun"></i>
-                    <span>Kemah.in</span>
-                </div>
-                <p class="text-xs text-gray-200">Rent Your Camping Gear</p>
-            </div>
-
-            <div>
-                <h2 class="text-3xl font-bold leading-tight mb-2">Explore More,<br>Rent Smarter</h2>
-                <p class="text-sm text-gray-200">Sewa perlengkapan camping berkualitas dengan mudah, cepat, dan terpercaya.</p>
-            </div>
-        </div>
+        <div class="relative bg-cover bg-center min-h-[300px] md:min-h-[550px]" 
+            style="background-image: url('{{ asset('images/bg-kemahin.jpg') }}');">
+        </div>   
 
         <!-- Bagian Kanan: Form Reset Password -->
         <div class="p-8 md:p-12 flex flex-col justify-center">
