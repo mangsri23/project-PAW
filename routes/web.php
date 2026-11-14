@@ -18,3 +18,6 @@ Route::get('/lupa-password', [AuthController::class, 'showForgot'])->name('passw
 Route::post('/lupa-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/admin/login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
+Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.login.post');

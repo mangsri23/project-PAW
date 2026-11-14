@@ -57,9 +57,6 @@ class AuthController extends Controller
 
         // Mengaktifkan Cookie "Ingat saya" jika dicentang
         $remember = $request->has('remember'); 
-        
-        // Mengecek apakah user menginputkan format email atau username
-        $fieldType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         if (Auth::attempt(['username' => $request->login, 'password' => $request->password], $remember)) {
             $request->session()->regenerate();
@@ -98,5 +95,46 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');
+    }
+
+    // ==========================================
+    // FITUR LOGIN KHUSUS ADMINISTRATOR
+    // ==========================================
+
+    // Menampilkan halaman login Administrator
+    public function showAdminLogin()
+    {
+        return view('auth.admin-login');
+    }
+
+    // Memproses login khusus Administrator
+    public function adminLogin(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $remember = $request->has('remember');
+
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $remember)) {
+            // Cek apakah role akun ini benar-benar 'admin'
+            if (Auth::user()->role !== 'admin') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'username' => 'Akses ditolak. Akun ini tidak memiliki hak akses Administrator.',
+                ])->withInput();
+            }
+
+            $request->session()->regenerate();
+            return redirect()->intended('/admin/dashboard');
+        }
+
+        return back()->withErrors([
+            'username' => 'Username atau password admin salah.',
+        ])->withInput();
     }
 }
