@@ -41,7 +41,7 @@
                             <i class="fa-regular fa-user"></i>
                         </span>
                         <input type="text" name="login" value="{{ old('login') }}" required
-                            placeholder="Email atau Username"
+                            placeholder="Username"
                             class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800 transition">
                     </div>
                 </div>
@@ -85,6 +85,14 @@
             <p class="text-center text-xs text-gray-600">
                 Belum punya akun? <a href="{{ route('register') }}" class="text-emerald-800 font-bold hover:underline">Daftar di sini</a>
             </p>
+
+            <!-- Tautan Pintas ke Login Administrator (Posisi Paling Bawah) -->
+            <div class="mt-6 pt-4 border-t border-gray-100 text-center">
+                <a href="{{ route('admin.login') }}" class="inline-flex items-center justify-center gap-1.5 text-xs text-gray-400 hover:text-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Masuk sebagai Administrator &rarr;</span>
+                </a>
+            </div>
         </div>
     </div>
 
